@@ -15,7 +15,13 @@
     "@babel/preset-env": "^7.0.0-beta.49",
     "@babel/register": "^7.0.0-beta.49"
   },
+  "devDependencies": {
+    "babel-eslint": "^8.2.3",
+    "eslint": "^4.19.1",
+    "eslint-config-optimum-energy": "^0.3.1"
+  },
   "scripts": {
-    "build": "babel source -d build"
+    "build": "babel source -d build",
+    "lint": "eslint --max-warnings=0 ."
   }
 }
