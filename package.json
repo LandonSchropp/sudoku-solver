@@ -5,5 +5,17 @@
   "repository": "https://github.com/LandonSchropp/sudoku-solver",
   "author": "Landon Schropp <schroppl@gmail.com>",
   "license": "MIT",
-  "private": true
+  "private": true,
+  "dependencies": {
+    "@babel/cli": "^7.0.0-beta.49",
+    "@babel/core": "^7.0.0-beta.49",
+    "@babel/node": "^7.0.0-beta.49",
+    "@babel/plugin-proposal-class-properties": "^7.0.0-beta.49",
+    "@babel/plugin-proposal-export-default-from": "^7.0.0-beta.49",
+    "@babel/preset-env": "^7.0.0-beta.49",
+    "@babel/register": "^7.0.0-beta.49"
+  },
+  "scripts": {
+    "build": "babel source -d build"
+  }
 }
