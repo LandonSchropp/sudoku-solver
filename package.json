@@ -16,12 +16,16 @@
     "@babel/register": "^7.0.0-beta.49"
   },
   "devDependencies": {
+    "babel-core": "^7.0.0-0",
     "babel-eslint": "^8.2.3",
+    "babel-jest": "^23.0.1",
     "eslint": "^4.19.1",
-    "eslint-config-optimum-energy": "^0.3.1"
+    "eslint-config-optimum-energy": "^0.3.1",
+    "jest": "^23.1.0"
   },
   "scripts": {
     "build": "babel source -d build",
-    "lint": "eslint --max-warnings=0 ."
+    "lint": "eslint --max-warnings=0 .",
+    "test": "jest"
   }
 }
