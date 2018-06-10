@@ -1,0 +1,9 @@
+{
+  "name": "sudoku-solver",
+  "description": "A tool that solves Sudoku puzzles.",
+  "main": "index.js",
+  "repository": "https://github.com/LandonSchropp/sudoku-solver",
+  "author": "Landon Schropp <schroppl@gmail.com>",
+  "license": "MIT",
+  "private": true
+}
