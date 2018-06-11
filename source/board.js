@@ -45,7 +45,8 @@ export function boardColumn(column, board) {
 
 /**
  * Returns the elements in a square.
- * @param square The square number.
+ * @param row The row number.
+ * @param column The column number.
  * @param board A Sudoku board.
  * @return An array of elements in the board's square.
  */
@@ -60,4 +61,25 @@ export function boardSquare(row, column, board) {
     .map(values => _.slice(values, columnBase, columnBase + squareSize))
     .flatten()
     .value();
+}
+
+/**
+ * Returns the available values for a given row and column in the board.
+ * @param row The row number.
+ * @param column The column number.
+ * @param board A Sudoku board.
+ * @return The available values for a given row and column in the board.
+ */
+export function boardAvailableValues(row, column, board) {
+
+  if (!_.isNil(board[row][column])) {
+    return [ board[row][column] ];
+  }
+
+  return _.difference(
+    _.range(1, boardSize(board) + 1),
+    boardRow(row, board),
+    boardColumn(column, board),
+    boardSquare(row, column, board)
+  );
 }
