@@ -3,7 +3,8 @@ import {
   boardRow,
   boardColumn,
   boardSquare,
-  boardAvailableValues
+  boardAvailableValues,
+  boardSet
 } from '../source/board';
 
 let board;
@@ -154,6 +155,49 @@ describe("boardAvailableValues", () => {
 
     it("returns the values not in the row", () => {
       expect(boardAvailableValues(0, 0, board)).toEqual([ 1, 2, 3 ]);
+    });
+  });
+});
+
+describe("boardSet", () => {
+
+  describe("when the value was not previously set", () => {
+    beforeEach(() => {
+      board = [
+        [ null, null, null, null ],
+        [ null, null, null, null ],
+        [ null, null, null, null ],
+        [ null, null, null, null ]
+      ];
+    });
+
+    it("returns the board with the value set", () => {
+      expect(boardSet(1, 2, 3, board)).toEqual([
+        [ null, null, null, null ],
+        [ null, null, 3, null ],
+        [ null, null, null, null ],
+        [ null, null, null, null ]
+      ]);
+    });
+  });
+
+  describe("returns a board with the value set", () => {
+    beforeEach(() => {
+      board = [
+        [ null, null, null, null ],
+        [ null, null, 1, null ],
+        [ null, null, null, null ],
+        [ null, null, null, null ]
+      ];
+    });
+
+    it("returns the board with the value set", () => {
+      expect(boardSet(1, 2, 3, board)).toEqual([
+        [ null, null, null, null ],
+        [ null, null, 3, null ],
+        [ null, null, null, null ],
+        [ null, null, null, null ]
+      ]);
     });
   });
 });

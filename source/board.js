@@ -83,3 +83,23 @@ export function boardAvailableValues(row, column, board) {
     boardSquare(row, column, board)
   );
 }
+
+/**
+ * Returns a new board with the given value set at the row and column in the board.
+ * @param row The row number.
+ * @param column The column number.
+ * @param value The value to set.
+ * @param board A Sudoku board.
+ * @return The available values for a given row and column in the board.
+ */
+export function boardSet(row, column, value, board) {
+  return [
+    ...board.slice(0, row),
+    [
+      ...board[row].slice(0, column),
+      value,
+      ...board[row].slice(column + 1)
+    ],
+    ...board.slice(row + 1)
+  ];
+}
