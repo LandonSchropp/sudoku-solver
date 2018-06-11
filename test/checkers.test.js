@@ -3,7 +3,8 @@ import {
   checkRow,
   checkColumn,
   checkSquare,
-  checkBoard
+  checkBoard,
+  isBoardSolved
 } from '../source/checkers';
 
 let board;
@@ -221,6 +222,39 @@ describe("checkBoard", () => {
 
     it("returns true", () => {
       expect(checkBoard(board)).toBe(true);
+    });
+  });
+});
+
+describe("isBoardSolved", () => {
+
+  describe("when the board contains unfilled values", () => {
+    beforeEach(() => {
+      board = [
+        [ 4, null, 2, null ],
+        [ null, 3, null, 1 ],
+        [ 3, null, 1, null ],
+        [ null, 4, null, 2 ]
+      ];
+    });
+
+    it("returns true", () => {
+      expect(isBoardSolved(board)).toBe(false);
+    });
+  });
+
+  describe("when the board is filled and valid", () => {
+    beforeEach(() => {
+      board = [
+        [ 4, 1, 2, 3 ],
+        [ 2, 3, 4, 1 ],
+        [ 3, 2, 1, 4 ],
+        [ 1, 4, 3, 2 ]
+      ];
+    });
+
+    it("returns true", () => {
+      expect(isBoardSolved(board)).toBe(true);
     });
   });
 });

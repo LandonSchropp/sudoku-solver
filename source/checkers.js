@@ -76,3 +76,13 @@ export function checkBoard(board) {
 
   return true;
 }
+
+/**
+ * Determines if a board is solved.
+ * @param board The Sudoku board. This function assumes the values in the board are either null or
+ * valid numbers.
+ * @return Returns true if the given square is valid and false otherwise.
+ */
+export function isBoardSolved(board) {
+  return !_.some(_.flatten(board), _.isNil) && checkBoard(board);
+}
