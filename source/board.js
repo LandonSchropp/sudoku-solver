@@ -5,8 +5,22 @@ import _ from 'lodash';
  */
 export const EMPTY = _.times(9, () => _.times(9, () => null));
 
+/**
+ * Returns the size of a board.
+ * @param board A Sudoku board.
+ * @return The size of the board.
+ */
 export function boardSize(board) {
   return board.length;
+}
+
+/**
+ * Returns the size of a square in the board.
+ * @param board A Sudoku board.
+ * @return The square size of the board.
+ */
+export function boardSquareSize(board) {
+  return Math.sqrt(boardSize(board));
 }
 
 /**
@@ -36,8 +50,7 @@ export function boardColumn(column, board) {
  * @return An array of elements in the board's square.
  */
 export function boardSquare(row, column, board) {
-  let size = boardSize(board);
-  let squareSize = size / 3;
+  let squareSize = boardSquareSize(board);
 
   let rowBase = Math.floor(row / squareSize) * squareSize;
   let columnBase = Math.floor(column / squareSize) * squareSize;

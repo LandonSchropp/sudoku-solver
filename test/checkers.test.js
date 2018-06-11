@@ -1,22 +1,23 @@
-import { checkRow, checkColumn, checkSquare } from '../source/checkers';
+import { EMPTY } from '../source/board';
+import {
+  checkRow,
+  checkColumn,
+  checkSquare
+} from '../source/checkers';
 
 let board;
 
 describe("checkRow", () => {
 
   describe("when the row only contains null values", () => {
-    beforeEach(() => {
-      board = [ [ null, null, null, null, null, null, null, null, null ] ];
-    });
-
     it("returns true", () => {
-      expect(checkRow(0, board)).toBe(true);
+      expect(checkRow(0, EMPTY)).toBe(true);
     });
   });
 
   describe("when the row contains a single value", () => {
     beforeEach(() => {
-      board = [ [ 1, null, null, null, null, null, null, null, null ] ];
+      board = [ [ 1, null, null, null ] ];
     });
 
     it("returns true", () => {
@@ -26,7 +27,7 @@ describe("checkRow", () => {
 
   describe("when the row contains multiple unique values", () => {
     beforeEach(() => {
-      board = [ [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ] ];
+      board = [ [ 1, 2, 3, 4 ] ];
     });
 
     it("returns true", () => {
@@ -36,7 +37,7 @@ describe("checkRow", () => {
 
   describe("when the row contains duplicate values", () => {
     beforeEach(() => {
-      board = [ [ 1, 2, 3, 4, 5, 6, 7, 8, 1 ] ];
+      board = [ [ 1, 2, 3, 1 ] ];
     });
 
     it("returns false", () => {
@@ -48,22 +49,8 @@ describe("checkRow", () => {
 describe("checkColumn", () => {
 
   describe("when the column only contains null values", () => {
-    beforeEach(() => {
-      board = [
-        [ null ],
-        [ null ],
-        [ null ],
-        [ null ],
-        [ null ],
-        [ null ],
-        [ null ],
-        [ null ],
-        [ null ]
-      ];
-    });
-
     it("returns true", () => {
-      expect(checkColumn(0, board)).toBe(true);
+      expect(checkColumn(0, EMPTY)).toBe(true);
     });
   });
 
@@ -71,11 +58,6 @@ describe("checkColumn", () => {
     beforeEach(() => {
       board = [
         [ 1 ],
-        [ null ],
-        [ null ],
-        [ null ],
-        [ null ],
-        [ null ],
         [ null ],
         [ null ],
         [ null ]
@@ -93,12 +75,7 @@ describe("checkColumn", () => {
         [ 1 ],
         [ 2 ],
         [ 3 ],
-        [ 4 ],
-        [ 5 ],
-        [ 6 ],
-        [ 7 ],
-        [ 8 ],
-        [ 9 ]
+        [ 4 ]
       ];
     });
 
@@ -113,11 +90,6 @@ describe("checkColumn", () => {
         [ 1 ],
         [ 2 ],
         [ 3 ],
-        [ 4 ],
-        [ 5 ],
-        [ 6 ],
-        [ 7 ],
-        [ 8 ],
         [ 1 ]
       ];
     });
@@ -131,37 +103,18 @@ describe("checkColumn", () => {
 describe("checkSquare", () => {
 
   describe("when the square only contains null values", () => {
-    beforeEach(() => {
-      board = [
-        [ null, null, null, null, null, null, null, null, null ],
-        [ null, null, null, null, null, null, null, null, null ],
-        [ null, null, null, null, null, null, null, null, null ],
-        [ null, null, null, null, null, null, null, null, null ],
-        [ null, null, null, null, null, null, null, null, null ],
-        [ null, null, null, null, null, null, null, null, null ],
-        [ null, null, null, null, null, null, null, null, null ],
-        [ null, null, null, null, null, null, null, null, null ],
-        [ null, null, null, null, null, null, null, null, null ]
-      ];
-    });
-
     it("returns true", () => {
-      expect(checkSquare(0, 0, board)).toBe(true);
+      expect(checkSquare(0, 0, EMPTY)).toBe(true);
     });
   });
 
   describe("when the square contains a single value", () => {
     beforeEach(() => {
       board = [
-        [ 1, null, null, null, null, null, null, null, null ],
-        [ null, null, null, null, null, null, null, null, null ],
-        [ null, null, null, null, null, null, null, null, null ],
-        [ null, null, null, null, null, null, null, null, null ],
-        [ null, null, null, null, null, null, null, null, null ],
-        [ null, null, null, null, null, null, null, null, null ],
-        [ null, null, null, null, null, null, null, null, null ],
-        [ null, null, null, null, null, null, null, null, null ],
-        [ null, null, null, null, null, null, null, null, null ]
+        [ 1, null, null, null ],
+        [ null, null, null, null ],
+        [ null, null, null, null ],
+        [ null, null, null, null ]
       ];
     });
 
@@ -173,15 +126,10 @@ describe("checkSquare", () => {
   describe("when the square contains multiple unique values", () => {
     beforeEach(() => {
       board = [
-        [ 1, 2, 3, null, null, null, null, null, null ],
-        [ 4, 5, 6, null, null, null, null, null, null ],
-        [ 7, 8, 9, null, null, null, null, null, null ],
-        [ null, null, null, null, null, null, null, null, null ],
-        [ null, null, null, null, null, null, null, null, null ],
-        [ null, null, null, null, null, null, null, null, null ],
-        [ null, null, null, null, null, null, null, null, null ],
-        [ null, null, null, null, null, null, null, null, null ],
-        [ null, null, null, null, null, null, null, null, null ]
+        [ 1, 2, null, null ],
+        [ 3, 4, null, null ],
+        [ null, null, null, null ],
+        [ null, null, null, null ]
       ];
     });
 
@@ -193,15 +141,10 @@ describe("checkSquare", () => {
   describe("when the square contains duplicate values", () => {
     beforeEach(() => {
       board = [
-        [ 1, 2, 3, null, null, null, null, null, null ],
-        [ 4, 5, 6, null, null, null, null, null, null ],
-        [ 7, 8, 1, null, null, null, null, null, null ],
-        [ null, null, null, null, null, null, null, null, null ],
-        [ null, null, null, null, null, null, null, null, null ],
-        [ null, null, null, null, null, null, null, null, null ],
-        [ null, null, null, null, null, null, null, null, null ],
-        [ null, null, null, null, null, null, null, null, null ],
-        [ null, null, null, null, null, null, null, null, null ]
+        [ 1, 2, null, null ],
+        [ 3, 1, null, null ],
+        [ null, null, null, null ],
+        [ null, null, null, null ]
       ];
     });
 
