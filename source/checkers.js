@@ -1,5 +1,7 @@
 import _ from 'lodash';
 
+import { boardRow, boardColumn, boardSquare } from './board';
+
 /**
  * Returns true if all of the values in the given array that aren't null are unique numbers.
  */
@@ -9,12 +11,23 @@ function valuesAreUnique(values) {
 }
 
 /**
- * Ensures the given row number is valid for the provided board.
+ * Ensures the given row is valid for the board.
  * @param row The row number to check.
  * @param board The Sudoku board. This function assumes the values in the board are either null or
  * valid numbers.
  * @return Returns true if the given row is valid and false otherwise.
  */
 export function checkRow(row, board) {
-  return valuesAreUnique(board[row]);
+  return valuesAreUnique(boardRow(row, board));
+}
+
+/**
+ * Ensures the given column is valid for the board.
+ * @param column The column number to check.
+ * @param board The Sudoku board. This function assumes the values in the board are either null or
+ * valid numbers.
+ * @return Returns true if the given column is valid and false otherwise.
+ */
+export function checkColumn(column, board) {
+  return valuesAreUnique(boardColumn(column, board));
 }
