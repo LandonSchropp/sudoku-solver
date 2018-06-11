@@ -31,3 +31,14 @@ export function checkRow(row, board) {
 export function checkColumn(column, board) {
   return valuesAreUnique(boardColumn(column, board));
 }
+
+/**
+ * Ensures the given square is valid for the board.
+ * @param square The square number to check.
+ * @param board The Sudoku board. This function assumes the values in the board are either null or
+ * valid numbers.
+ * @return Returns true if the given square is valid and false otherwise.
+ */
+export function checkSquare(row, column, board) {
+  return valuesAreUnique(boardSquare(row, column, board));
+}

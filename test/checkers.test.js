@@ -1,4 +1,4 @@
-import { checkRow, checkColumn } from '../source/checkers';
+import { checkRow, checkColumn, checkSquare } from '../source/checkers';
 
 let board;
 
@@ -124,6 +124,89 @@ describe("checkColumn", () => {
 
     it("returns false", () => {
       expect(checkColumn(0, board)).toBe(false);
+    });
+  });
+});
+
+describe("checkSquare", () => {
+
+  describe("when the square only contains null values", () => {
+    beforeEach(() => {
+      board = [
+        [ null, null, null, null, null, null, null, null, null ],
+        [ null, null, null, null, null, null, null, null, null ],
+        [ null, null, null, null, null, null, null, null, null ],
+        [ null, null, null, null, null, null, null, null, null ],
+        [ null, null, null, null, null, null, null, null, null ],
+        [ null, null, null, null, null, null, null, null, null ],
+        [ null, null, null, null, null, null, null, null, null ],
+        [ null, null, null, null, null, null, null, null, null ],
+        [ null, null, null, null, null, null, null, null, null ]
+      ];
+    });
+
+    it("returns true", () => {
+      expect(checkSquare(0, 0, board)).toBe(true);
+    });
+  });
+
+  describe("when the square contains a single value", () => {
+    beforeEach(() => {
+      board = [
+        [ 1, null, null, null, null, null, null, null, null ],
+        [ null, null, null, null, null, null, null, null, null ],
+        [ null, null, null, null, null, null, null, null, null ],
+        [ null, null, null, null, null, null, null, null, null ],
+        [ null, null, null, null, null, null, null, null, null ],
+        [ null, null, null, null, null, null, null, null, null ],
+        [ null, null, null, null, null, null, null, null, null ],
+        [ null, null, null, null, null, null, null, null, null ],
+        [ null, null, null, null, null, null, null, null, null ]
+      ];
+    });
+
+    it("returns true", () => {
+      expect(checkSquare(0, 0, board)).toBe(true);
+    });
+  });
+
+  describe("when the square contains multiple unique values", () => {
+    beforeEach(() => {
+      board = [
+        [ 1, 2, 3, null, null, null, null, null, null ],
+        [ 4, 5, 6, null, null, null, null, null, null ],
+        [ 7, 8, 9, null, null, null, null, null, null ],
+        [ null, null, null, null, null, null, null, null, null ],
+        [ null, null, null, null, null, null, null, null, null ],
+        [ null, null, null, null, null, null, null, null, null ],
+        [ null, null, null, null, null, null, null, null, null ],
+        [ null, null, null, null, null, null, null, null, null ],
+        [ null, null, null, null, null, null, null, null, null ]
+      ];
+    });
+
+    it("returns true", () => {
+      expect(checkSquare(0, 0, board)).toBe(true);
+    });
+  });
+
+  describe("when the square contains duplicate values", () => {
+    beforeEach(() => {
+      board = [
+        [ 1, 2, 3, null, null, null, null, null, null ],
+        [ 4, 5, 6, null, null, null, null, null, null ],
+        [ 7, 8, 1, null, null, null, null, null, null ],
+        [ null, null, null, null, null, null, null, null, null ],
+        [ null, null, null, null, null, null, null, null, null ],
+        [ null, null, null, null, null, null, null, null, null ],
+        [ null, null, null, null, null, null, null, null, null ],
+        [ null, null, null, null, null, null, null, null, null ],
+        [ null, null, null, null, null, null, null, null, null ]
+      ];
+    });
+
+    it("returns false", () => {
+      expect(checkSquare(0, 0, board)).toBe(false);
     });
   });
 });
