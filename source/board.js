@@ -5,6 +5,10 @@ import _ from 'lodash';
  */
 export const EMPTY = _.times(9, () => _.times(9, () => null));
 
+export function boardSize(board) {
+  return board.length;
+}
+
 /**
  * Returns the elements in a row.
  * @param row The row number.
@@ -31,9 +35,16 @@ export function boardColumn(column, board) {
  * @param board A Sudoku board.
  * @return An array of elements in the board's square.
  */
-export function boardSquare(square, board) {
-  let rowBase = Math.floor(square / 3) * 3;
-  let columnBase = square % 3 * 3;
+export function boardSquare(row, column, board) {
+  let size = boardSize(board);
+  let squareSize = size / 3;
 
-  return _.flatten(_.times(3, i => _.times(3, j => board[rowBase + i][columnBase + j])));
+  let rowBase = Math.floor(row / squareSize) * squareSize;
+  let columnBase = Math.floor(column / squareSize) * squareSize;
+
+  return _.chain(board)
+    .slice(rowBase, rowBase + squareSize)
+    .map(values => _.slice(values, columnBase, columnBase + squareSize))
+    .flatten()
+    .value();
 }
