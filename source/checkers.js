@@ -49,3 +49,30 @@ export function checkColumn(column, board) {
 export function checkSquare(row, column, board) {
   return valuesAreUnique(boardSquare(row, column, board));
 }
+
+/**
+ * Determines if a board is valid.
+ * @param board The Sudoku board. This function assumes the values in the board are either null or
+ * valid numbers.
+ * @return Returns true if the given square is valid and false otherwise.
+ */
+export function checkBoard(board) {
+  let size = boardSize(board);
+  let squareSize = boardSquareSize(board);
+
+  for (let i = 0; i < size; i++) {
+    if (!checkRow(i, board) || !checkColumn(i, board)) {
+      return false;
+    }
+  }
+
+  for (let i = 0; i < squareSize; i++) {
+    for (let j = 0; j < squareSize; j++) {
+      if (!checkSquare(i * squareSize, j * squareSize, board)) {
+        return false;
+      }
+    }
+  }
+
+  return true;
+}

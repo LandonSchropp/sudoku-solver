@@ -2,7 +2,8 @@ import { EMPTY } from '../source/board';
 import {
   checkRow,
   checkColumn,
-  checkSquare
+  checkSquare,
+  checkBoard
 } from '../source/checkers';
 
 let board;
@@ -150,6 +151,76 @@ describe("checkSquare", () => {
 
     it("returns false", () => {
       expect(checkSquare(0, 0, board)).toBe(false);
+    });
+  });
+});
+
+describe("checkBoard", () => {
+
+  describe("when the board is empty", () => {
+
+    it("returns true", () => {
+      expect(checkBoard(EMPTY)).toBe(true);
+    });
+  });
+
+  describe("when a row is invalid", () => {
+    beforeEach(() => {
+      board = [
+        [ 1, 2, 3, 1 ],
+        [ null, null, null, null ],
+        [ null, null, null, null ],
+        [ null, null, null, null ]
+      ];
+    });
+
+    it("returns false", () => {
+      expect(checkBoard(board)).toBe(false);
+    });
+  });
+
+  describe("when a column is invalid", () => {
+    beforeEach(() => {
+      board = [
+        [ 1, null, null, null ],
+        [ 2, null, null, null ],
+        [ 3, null, null, null ],
+        [ 1, null, null, null ]
+      ];
+    });
+
+    it("returns false", () => {
+      expect(checkBoard(board)).toBe(false);
+    });
+  });
+
+  describe("when a square is invalid", () => {
+    beforeEach(() => {
+      board = [
+        [ 1, 2, null, null ],
+        [ 3, 1, null, null ],
+        [ null, null, null, null ],
+        [ null, null, null, null ]
+      ];
+    });
+
+    it("returns false", () => {
+      expect(checkBoard(board)).toBe(false);
+    });
+  });
+
+  describe("when the board is filled and valid", () => {
+    beforeEach(() => {
+      board = [
+        [ 4, 1, 2, 3 ],
+        [ 2, 3, 4, 1 ],
+        [ 3, 2, 1, 4 ],
+        [ 1, 4, 3, 2 ]
+      ];
+    });
+
+    it("returns true", () => {
+      expect(checkBoard(board)).toBe(true);
     });
   });
 });
